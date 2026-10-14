@@ -10,7 +10,7 @@ holder_depth = 8;
 
 /* [Cutout Settings] */
 cutout_width = holder_width;
-cutout_radius = 5.5;
+cutout_diameter = 11;
 
 tablet_height = 128;
 
@@ -25,18 +25,18 @@ module clamp() {
 
     translate([-0.01, 0, 0])
       rotate([0, 90, 0])
-      cylinder(h=cutout_width+0.02, r=cutout_radius);
+      cylinder(h=cutout_width+0.02, d=cutout_diameter);
   }
 }
 
 module clamps(){
   translate([holder_width, 0, 0]) clamp();
   translate([-(2*holder_width), 0, 0]) clamp();
-  translate([-(holder_width/2), tablet_height-(cutout_radius*2-base_thickness), 0]) rotate([180, 0, 0]) clamp();
+  translate([-(holder_width/2), tablet_height-(cutout_diameter-base_thickness), 0]) rotate([180, 0, 0]) clamp();
 }
 
 module leg() {
-  linear_extrude(base_thickness) polygon([[holder_width, 0], [holder_width*2, 0], [holder_width/2, tablet_height-(cutout_radius*2-2)], [-(holder_width/2), tablet_height-(cutout_radius*2-2)]]);
+  linear_extrude(base_thickness) polygon([[holder_width, 0], [holder_width*2, 0], [holder_width/2, tablet_height-(cutout_diameter-2)], [-(holder_width/2), tablet_height-(cutout_diameter-2)]]);
 }
 
 module legs() {
